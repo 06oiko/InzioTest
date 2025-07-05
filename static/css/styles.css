@@ -1,0 +1,12 @@
+html,body{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100dvh;
+}
+
+.form-control:focus{
+    box-shadow: none;;
+}

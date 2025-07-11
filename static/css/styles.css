@@ -1,12 +1,13 @@
-html,body{
-    margin: 0;
-    padding: 0;
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
 
-body{
-    height: 100dvh;
+body {
+  height: 100dvh;
 }
 
-.form-control:focus{
-    box-shadow: none;;
+.form-control:focus {
+  box-shadow: none;
 }

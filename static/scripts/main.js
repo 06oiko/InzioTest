@@ -15,16 +15,26 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 async function SearchPost(query) {
-  const response = await fetch("/search", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ query }),
-  });
+  try {
+    const response = await fetch("/search", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query }),
+    });
 
-  const blob = await response.blob();
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "search_results.txt";
-  a.click();
+    if (!response.ok) {
+      throw new Error(`Server error: ${response.status}`);
+    }
+
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "search_results.txt";
+    a.click();
+    URL.revokeObjectURL(url); // Освобождаем ресурсы
+  } catch (error) {
+    console.error("SearchPost error:", error);
+    alert("Failed to fetch search results. Please try again.");
+  }
 }

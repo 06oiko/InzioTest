@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const searchButton = document.getElementById("search_button");
   const searchInput = document.getElementById("search_input");
-  const format = document.getElementById("format_select").value;
 
   searchButton.addEventListener("click", async () => {
     const query = searchInput.value.trim();
@@ -17,6 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function SearchPost(query) {
   try {
+    const format = document.getElementById("format_select").value;
+
     const response = await fetch("/search", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -31,7 +32,7 @@ async function SearchPost(query) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "search_results.txt";
+    a.download = `search_results.${format}`;
     a.click();
     URL.revokeObjectURL(url);
   } catch (error) {

@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const searchButton = document.getElementById("search_button");
   const searchInput = document.getElementById("search_input");
+  const format = document.getElementById("format_select").value;
 
   searchButton.addEventListener("click", async () => {
     const query = searchInput.value.trim();
@@ -19,7 +20,7 @@ async function SearchPost(query) {
     const response = await fetch("/search", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query }),
+      body: JSON.stringify({ query, format }),
     });
 
     if (!response.ok) {

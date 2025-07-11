@@ -32,7 +32,7 @@ async function SearchPost(query) {
     a.href = url;
     a.download = "search_results.txt";
     a.click();
-    URL.revokeObjectURL(url); // Освобождаем ресурсы
+    URL.revokeObjectURL(url);
   } catch (error) {
     console.error("SearchPost error:", error);
     alert("Failed to fetch search results. Please try again.");
